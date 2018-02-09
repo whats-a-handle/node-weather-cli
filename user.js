@@ -1,4 +1,4 @@
-var weather = require("./weather.js");
+var weather = require("weather-js");
 var moment = require("moment");
 
 var User = function(name, location){
@@ -6,7 +6,17 @@ var User = function(name, location){
 	this.location = location;
 	this.time = moment().format("YYYY-MM-DD");
 	this.search = function(param){
-		//will's code here
+
+		weather.find({search: param, degreeType: 'F'}, function(error, result) {
+		 if(error){
+		 	console.log("An Error has occurred during weather search for city: " + param);
+		 	console.log("Error: " + error);
+		 }
+		 else{
+		 	console.log(result);
+		 }
+		
+		});
 	};
 }
 
